@@ -1,9 +1,10 @@
 {
-  "name": "@loyalty/api",
+  "name": "@service/api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --config ../../nodemon.json",
     "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@loyalty/models": "^1.0.0",
-    "qs": "^6.7.0"
+    "@package/models": "^1.0.0",
+    "express": "^4.17.0"
   }
 }

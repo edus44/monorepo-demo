@@ -1,5 +1,5 @@
 module.exports = {
-  salute(a){
-    console.log('hi',a)
+  get(){
+    return 'hi from m2'
   }
 }
