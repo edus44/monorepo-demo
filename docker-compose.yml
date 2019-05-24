@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build: 
+      dockerfile: services/api/Dockerfile
+      context: .
+    ports:
+      - 5000:5000
+  mgt:
+    build: 
+      dockerfile: services/mgt/Dockerfile
+      context: .
+    ports:
+      - 5100:5100
