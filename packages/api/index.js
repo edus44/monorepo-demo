@@ -1,3 +1,3 @@
-const org = require('@loyalty/models')
+const {salue} = require('@loyalty/models')
 
-org.salute()
+salute()
