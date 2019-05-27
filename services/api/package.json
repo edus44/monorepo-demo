@@ -1,6 +1,6 @@
 {
   "name": "@service/api",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@package/models": "^1.0.0",
-    "@package/tools": "^1.0.0",
+    "@package/models": "^0.0.2",
+    "@package/tools": "^0.0.2",
     "express": "^4.17.0"
   }
 }
