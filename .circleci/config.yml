@@ -8,10 +8,12 @@ jobs:
       - run:
           name: diff
           command: |
-            # save value stored in file to a local env var
-            CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
+            COMMIT_RANGE=$(cat BASE_COMPARE_COMMIT.txt)...${CIRCLE_SHA1:0:12}
 
-            COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
+            # save value stored in file to a local env var
+            # CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
+
+            # COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
 
             echo "Commit range: $COMMIT_RANGE"
 
