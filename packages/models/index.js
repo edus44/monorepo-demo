@@ -1,5 +1,5 @@
 module.exports = {
   get(){
-    return 'hi from m2'
+    return 'hi from m22'
   }
 }

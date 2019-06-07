@@ -15,21 +15,29 @@ jobs:
       - compare-url/use:
           step-name: Launch changed
           custom-logic: |
-            echo "Commit range: $COMMIT_RANGE"
-            git diff $COMMIT_RANGE --name-status
-      - run:
-          name: diff
-          command: |
-            # COMMIT_RANGE=$(cat BASE_COMPARE_COMMIT.txt)...${CIRCLE_SHA1:0:12}
 
-            # save value stored in file to a local env var
-            # CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
+            servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
+            changedPaths=$(git diff $COMMIT_RANGE  --name-only | cut -d/ -f1,2 | sort -u)
+            changedBase=$(echo $changedPaths | tr ' ' '\n' | grep -E "^(.circleci|packages)/" )
+            changedServices=$(echo $changedPaths | tr ' ' '\n' | grep services/ | cut -d/ -f2)
 
-            # COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')
+            echo " Services names   => $(echo $servicesNames)"
+            echo " Commit range     => $(echo $COMMIT_RANGE)"
+            echo " Changed paths    => $(echo $changedPaths)"
+            echo " Changed base     => $(echo $changedBase)"
+            echo " Changed services => $(echo $changedServices)"
+            echo ""
 
-            echo "Commit range: $COMMIT_RANGE"
+            if [[ $changedBase = '' ]]; then
+              echo 'No changes in base dependencies'
+              deployServicesNames=$changedServices
+            else
+              echo "Found changes in base dependencies"
+              deployServicesNames=$servicesNames
+            fi
 
-            git diff $COMMIT_RANGE --name-status
+            echo "Deploying services: $(echo $deployServicesNames)"
+      
 version: 2.1
 workflows:
   build:
