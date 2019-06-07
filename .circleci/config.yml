@@ -77,4 +77,4 @@ workflows:
     jobs:
       - build:
           requires:
-            - caca
+            - << pipeline.parameters.serviceName >>
