@@ -15,4 +15,4 @@ jobs:
       IMAGETAG: << pipeline.parameters.image-tag >>
     working_directory: << pipeline.parameters.workingdir >>
     steps:
-      - echo "Image tag used was ${IMAGETAG}"
+      - run: echo "Image tag used was ${IMAGETAG}"
