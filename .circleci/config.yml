@@ -80,4 +80,5 @@ workflows:
       - build:
           filters:
             branches:
-              only: << pipeline.parameters.serviceName >>
+              # only: << pipeline.parameters.serviceName >>
+              only: staging
