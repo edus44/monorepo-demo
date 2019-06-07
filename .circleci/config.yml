@@ -15,12 +15,12 @@ jobs:
       - compare-url/use:
           step-name: Launch changed
           custom-logic: |
-            echo wtf
-            set -x 
+            set +e
             servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
             changedPaths=$(git diff $COMMIT_RANGE  --name-only | cut -d/ -f1,2 | sort -u)
             changedBase=$(echo $changedPaths | tr ' ' '\n' | grep -E "^(.circleci|packages)/" )
             changedServices=$(echo $changedPaths | tr ' ' '\n' | grep services/ | cut -d/ -f2)
+            set -e
 
             echo " Services names   => $(echo $servicesNames)"
             echo " Commit range     => $(echo $COMMIT_RANGE)"
@@ -38,6 +38,7 @@ jobs:
             fi
 
             echo "Deploying services: $(echo $deployServicesNames)"
+
       
 version: 2.1
 workflows:
