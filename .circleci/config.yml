@@ -78,4 +78,6 @@ workflows:
   build:
     jobs:
       - build:
-          testOne: << pipeline.parameters.serviceName >>
+          filters:
+            branches:
+              only: << pipeline.parameters.serviceName >>
