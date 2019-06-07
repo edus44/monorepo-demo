@@ -84,3 +84,9 @@ workflows:
               # only: << pipeline.parameters.serviceName >>
               ignore: 
                 - << pipeline.parameters.serviceName >>
+
+      - labs/build-deploy:
+          name: Deploy << pipeline.parameters.serviceName >>
+          project: other
+          component: << pipeline.parameters.serviceName >>
+          dockerfile: ./services/<< pipeline.parameters.serviceName >>/Dockerfile
