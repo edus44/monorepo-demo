@@ -79,5 +79,3 @@ workflows:
     jobs:
       - build:
           testOne: << pipeline.parameters.serviceName >>
-          requires:
-            - << pipeline.parameters.serviceName >>
