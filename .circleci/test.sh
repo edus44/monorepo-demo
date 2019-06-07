@@ -1,3 +1,4 @@
+
 COMMIT_RANGE='HEAD^1'
 
 servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
