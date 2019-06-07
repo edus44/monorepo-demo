@@ -5,6 +5,7 @@ parameters:
     default: "build"
     
 orbs:
+  labs: gigigo/labs@dev:latest
   compare-url: iynere/compare-url@1.1.0
 
 jobs:
@@ -74,4 +75,6 @@ version: 2.1
 workflows:
   build:
     jobs:
-      - build
+      - build:
+          requires:
+            caca
