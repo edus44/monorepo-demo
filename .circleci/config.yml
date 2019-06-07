@@ -1,14 +1,22 @@
+
+orbs:
+  compare-url: iynere/compare-url@1.0.2
+
 jobs:
   build:
     docker:
       - image: circleci/circleci-cli
+    working_directory: ~/repo
     steps:
       - checkout
-      - compare-url/reconstruct
+      - compare-url/reconstruct:
+          project-path: .
+          debug: true
+      - compare-url/use
       - run:
           name: diff
           command: |
-            COMMIT_RANGE=$(cat BASE_COMPARE_COMMIT.txt)...${CIRCLE_SHA1:0:12}
+            # COMMIT_RANGE=$(cat BASE_COMPARE_COMMIT.txt)...${CIRCLE_SHA1:0:12}
 
             # save value stored in file to a local env var
             # CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
@@ -18,8 +26,6 @@ jobs:
             echo "Commit range: $COMMIT_RANGE"
 
             git diff $COMMIT_RANGE --name-status
-orbs:
-  compare-url: iynere/compare-url@1.0.2
 version: 2.1
 workflows:
   build:
