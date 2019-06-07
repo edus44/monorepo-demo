@@ -37,6 +37,7 @@ jobs:
       - compare-url/use:
           step-name: Launch changed
           custom-logic: |
+            echo << pipeline.parameters.serviceName >>
             set +e
             servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
             changedPaths=$(git diff $COMMIT_RANGE  --name-only | cut -d/ -f1,2 | sort -u)
@@ -73,4 +74,4 @@ version: 2.1
 workflows:
   build:
     jobs:
-      - << pipeline.parameters.serviceName >>
+      - build
