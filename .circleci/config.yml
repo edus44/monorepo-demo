@@ -1,28 +1,18 @@
-
+version: 2.1
 parameters:
-  service-name:
+  image-tag:
     type: string
-    default: "caca"
-    
-orbs:
-  labs: gigigo/labs@dev:latest
-  compare-url: iynere/compare-url@1.1.0
+    default: "latest"
+  workingdir:
+    type: string
+    default: "./main"
 
 jobs:
-
   build:
     docker:
-      - image: circleci/circleci-cli
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     environment:
-      IMAGETAG: << pipeline.parameters.service-name >>
-    working_directory: ~/repo
+      IMAGETAG: << pipeline.parameters.image-tag >>
+    working_directory: << pipeline.parameters.workingdir >>
     steps:
-      - run:
-          name: Audit
-          command: echo 'hi << pipeline.parameters.service-name >>'
-      
-version: 2.1
-workflows:
-  build:
-    jobs:
-      - build
+      - echo "Image tag used was ${IMAGETAG}"
