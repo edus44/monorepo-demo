@@ -1,7 +1,7 @@
 const {get} = require('@package/models')
 const app = require('express')()
 
-console.log('mgt rev1')
+console.log('mgt rev12')
 
 app.use((req,res)=>{
   res.send({mgt:1,msg:get()})
