@@ -1,6 +1,6 @@
 
 orbs:
-  compare-url: iynere/compare-url@1.0.2
+  compare-url: iynere/compare-url@1.1.0
 
 jobs:
   build:
@@ -12,7 +12,11 @@ jobs:
       - compare-url/reconstruct:
           project-path: .
           debug: true
-      - compare-url/use
+      - compare-url/use:
+          step-name: Launch changed
+          custom-logic: |
+            echo "Commit range: $COMMIT_RANGE"
+            git diff $COMMIT_RANGE --name-status
       - run:
           name: diff
           command: |
