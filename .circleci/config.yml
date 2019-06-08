@@ -17,7 +17,8 @@ jobs:
             echo 'export DEPLOY_SERVICES_NAMES=$deployServicesNames' >> $BASH_ENV
       - run:
           name: Launch jobs
-          command: .circleci/launchJobs.sh
+          command: |
+            source .circleci/launchJobs.sh
   api:
     docker:
       - image: circleci/circleci-cli
