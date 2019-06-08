@@ -17,13 +17,29 @@ jobs:
 
             echo $deployServicesNames
 
-            # set -x
-            # for service-name in $deployServicesNames; do
-            #   echo $service-name
-            #   curl -s -u $CIRCLE_TOKEN: \
-            #     -d build_parameters[CIRCLE_JOB]=$service-name \
-            #     https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
-            # done
+            set -x
+            for service-name in $deployServicesNames; do
+              echo $service-name
+              curl -s -u $CIRCLE_TOKEN: \
+                -d build_parameters[CIRCLE_JOB]=$service-name \
+                https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+            done
+  api:
+    docker:
+      - image: circleci/circleci-cli
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Audit
+          command: echo 'hi api'
+  mgt:
+    docker:
+      - image: circleci/circleci-cli
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Audit
+          command: echo 'hi mgt'            
       
 workflows:
   version: 2
