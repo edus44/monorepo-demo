@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  launcher:
     docker:
       - image: circleci/circleci-cli
     working_directory: ~/repo
@@ -37,6 +37,6 @@ jobs:
       
 workflows:
   version: 2
-  build:
+  launcher:
     jobs:
-      - build
+      - launcher
