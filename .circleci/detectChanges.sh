@@ -1,6 +1,7 @@
 #!/bin/bash
 
 COMMIT_RANGE=$(cat CIRCLE_COMPARE_URL.txt | sed 's:^.*/compare/::g')
+# COMMIT_RANGE='HEAD^1'
 
 set +e
 servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
@@ -26,4 +27,4 @@ fi
 
 echo "Deploying services: $(echo $deployServicesNames)"
 
-echo "export DEPLOY_SERVICES_NAMES=$(echo $deployServicesNames)" >> $BASH_ENV
+echo "export DEPLOY_SERVICES_NAMES='$deployServicesNames'" >> $BASH_ENV
