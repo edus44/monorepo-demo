@@ -3,7 +3,7 @@ version: 2
 jobs:
   launcher:
     docker:
-      - image: circleci/circleci-cli
+      - image: mrnonz/alpine-git-curl
     working_directory: ~/repo
     steps:
       - checkout
