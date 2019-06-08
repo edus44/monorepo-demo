@@ -1,3 +1,4 @@
+#!/bin/bash
 # https://github.com/iynere/compare-url
 
 # RECONSTRUCT
@@ -167,10 +168,3 @@ echo "(BASE_COMPARE_COMMIT has also been stored in your working directory as BAS
 echo $CIRCLE_COMPARE_URL > CIRCLE_COMPARE_URL.txt
 echo "----------------------------------------------------------------------------------------------------"
 echo "next: both CIRCLE_COMPARE_URL.txt and BASE_COMPARE_COMMIT.txt will be persisted to a workspace, in case they are needed in later jobs"
-
-
-# USE 
-
-# save value stored in file to a local env var
-CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
-COMMIT_RANGE=$(echo $CIRCLE_COMPARE_URL | sed 's:^.*/compare/::g')

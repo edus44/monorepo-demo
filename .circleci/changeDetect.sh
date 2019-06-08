@@ -1,3 +1,7 @@
+#!/bin/bash
+
+COMMIT_RANGE=$(cat CIRCLE_COMPARE_URL.txt | sed 's:^.*/compare/::g')
+
 set +e
 servicesNames=$(find services -mindepth 1 -maxdepth 1 -type d | cut -d/ -f2)
 changedPaths=$(git diff $COMMIT_RANGE  --name-only | cut -d/ -f1,2 | sort -u)
