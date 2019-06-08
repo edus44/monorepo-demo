@@ -1,20 +1,4 @@
 jobs:
-  api:
-    docker:
-      - image: circleci/circleci-cli
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: Audit
-          command: echo 'hi api'
-  mgt:
-    docker:
-      - image: circleci/circleci-cli
-    working_directory: ~/repo
-    steps:
-      - run:
-          name: Audit
-          command: echo 'hi mgt'
   build:
     docker:
       - image: circleci/circleci-cli
