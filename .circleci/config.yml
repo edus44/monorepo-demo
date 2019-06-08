@@ -12,7 +12,9 @@ jobs:
           command: .circleci/commitRange.sh
       - run:
           name: Detect changes
-          command: .circleci/detectChanges.sh
+          command: |
+            source .circleci/detectChanges.sh
+            echo 'export DEPLOY_SERVICES_NAMES=$deployServicesNames' >> $BASH_ENV
       - run:
           name: Launch jobs
           command: .circleci/launchJobs.sh
