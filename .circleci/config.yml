@@ -16,6 +16,9 @@ jobs:
       - run:
           name: Launch jobs
           command: .circleci/launchJobs.sh
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: artifacts
   api:
     docker:
       - image: circleci/node
