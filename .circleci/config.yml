@@ -24,8 +24,8 @@ jobs:
       - run:
           name: Detect and laucnh
           command: |
-            source ./commitRange.sh
-            source ./changeDetect.sh
+            source .circleci/commitRange.sh
+            source .circleci/changeDetect.sh
 
             echo $deployServicesNames
 
