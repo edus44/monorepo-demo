@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $DEPLOY_SERVICES_NAMES;
+
 for serviceName in $DEPLOY_SERVICES_NAMES; do
   echo $serviceName
   curl -s -u $CIRCLE_TOKEN: \
