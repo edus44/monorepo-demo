@@ -15,7 +15,7 @@ jobs:
           command: |
             source .circleci/detectChanges.sh
             echo $deployServicesNames
-            echo 'export DEPLOY_SERVICES_NAMES=$deployServicesNames' >> $BASH_ENV
+            echo "export DEPLOY_SERVICES_NAMES=$deployServicesNames" >> $BASH_ENV
       - run:
           name: Launch jobs
           command: |
