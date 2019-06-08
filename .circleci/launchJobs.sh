@@ -1,7 +1,5 @@
 #!/bin/bash
 
-apk add jq
-
 for serviceName in $DEPLOY_SERVICES_NAMES; do
   echo "Launching $serviceName"
   result=$(curl -s -u $CIRCLE_TOKEN: \

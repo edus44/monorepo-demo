@@ -3,7 +3,7 @@ version: 2
 jobs:
   launcher:
     docker:
-      - image: mrnonz/alpine-git-curl
+      - image: edus44/alpine-git-curl-bash-jq
     working_directory: ~/repo
     steps:
       - checkout
