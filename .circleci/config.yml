@@ -11,19 +11,11 @@ jobs:
           name: Regenerate commit range
           command: .circleci/commitRange.sh
       - run:
-          name: Detect and launch
-          command: |
-            source .circleci/changeDetect.sh
-
-            echo $deployServicesNames
-
-            set -x
-            for serviceName in $deployServicesNames; do
-              echo $serviceName
-              curl -s -u $CIRCLE_TOKEN: \
-                -d build_parameters[CIRCLE_JOB]=$serviceName \
-                https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
-            done
+          name: Detect changes
+          command: .circleci/detectChanges.sh
+      - run:
+          name: Launch jobs
+          command: .circleci/launchJobs.sh
   api:
     docker:
       - image: circleci/circleci-cli

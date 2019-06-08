@@ -25,3 +25,5 @@ else
 fi
 
 echo "Deploying services: $(echo $deployServicesNames)"
+
+echo 'export DEPLOY_SERVICES_NAMES=$deployServicesNames' >> $BASH_ENV
