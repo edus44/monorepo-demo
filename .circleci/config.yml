@@ -1,18 +1,44 @@
-version: 2.1
-parameters:
-  image-tag:
-    type: string
-    default: "latest"
-  workingdir:
-    type: string
-    default: "./main"
-
 jobs:
+  api:
+    docker:
+      - image: circleci/circleci-cli
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Audit
+          command: echo 'hi api'
+  mgt:
+    docker:
+      - image: circleci/circleci-cli
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Audit
+          command: echo 'hi mgt'
   build:
     docker:
-      - image: circleci/node:<< pipeline.parameters.image-tag >>
-    environment:
-      IMAGETAG: << pipeline.parameters.image-tag >>
-    working_directory: << pipeline.parameters.workingdir >>
+      - image: circleci/circleci-cli
+    working_directory: ~/repo
     steps:
-      - run: echo "Image tag used was ${IMAGETAG}"
+      - checkout
+      - run:
+          name: Detect and laucnh
+          command: |
+            source ./commitRange.sh
+            source ./changeDetect.sh
+
+            echo $deployServicesNames
+
+            # set -x
+            # for service-name in $deployServicesNames; do
+            #   echo $service-name
+            #   curl -s -u $CIRCLE_TOKEN: \
+            #     -d build_parameters[CIRCLE_JOB]=$service-name \
+            #     https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+            # done
+      
+version: 2
+workflows:
+  build:
+    jobs:
+      - build
