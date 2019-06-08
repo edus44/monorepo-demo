@@ -18,20 +18,22 @@ jobs:
           command: .circleci/launchJobs.sh
   api:
     docker:
-      - image: circleci/circleci-cli
+      - image: circleci/node
     working_directory: ~/repo
     steps:
+      - checkout
       - run:
           name: Audit
-          command: echo 'hi api'
+          command: ls -la
   mgt:
     docker:
-      - image: circleci/circleci-cli
+      - image: circleci/node
     working_directory: ~/repo
     steps:
+      - checkout
       - run:
           name: Audit
-          command: echo 'hi mgt'            
+          command: ls -la       
       
 workflows:
   version: 2
