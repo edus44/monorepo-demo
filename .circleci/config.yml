@@ -16,4 +16,4 @@ workflows:
   version: 2
   launcher:
     jobs:
-      - te
+      - test
