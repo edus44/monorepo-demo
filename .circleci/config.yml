@@ -9,7 +9,7 @@ jobs:
       - run: 
           name: hi
           command: |
-            echo -e "api\nworker\nmgt" | circleci test splits 
+            echo -e "api\nworker\nmgt" | circleci tests split
       
 workflows:
   version: 2
