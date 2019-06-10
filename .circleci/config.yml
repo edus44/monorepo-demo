@@ -1,45 +1,18 @@
 version: 2
 
 jobs:
-  launcher:
+  test:
     docker:
       - image: edus44/alpine-git-curl-bash-jq
     working_directory: ~/repo
     steps:
-      - checkout
       - run: 
-          name: Regenerate commit range
-          command: .circleci/commitRange.sh
-      - run:
-          name: Detect changes
-          command: .circleci/detectChanges.sh
-      - run:
-          name: Launch jobs
-          command: .circleci/launchJobs.sh
-      - store_artifacts:
-          path: /tmp/artifacts
-          destination: artifacts
-  api:
-    docker:
-      - image: circleci/node
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Audit
-          command: ls -la
-  mgt:
-    docker:
-      - image: circleci/node
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Audit
-          command: ls -la       
+          name: hi
+          command: |
+            echo -e "api\nworker\nmgt" | circleci test splits 
       
 workflows:
   version: 2
   launcher:
     jobs:
-      - launcher
+      - test
