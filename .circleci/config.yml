@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: edus44/alpine-git-curl-bash-jq
     working_directory: ~/repo
+    parallelism: 4
     steps:
       - run: 
           name: hi
