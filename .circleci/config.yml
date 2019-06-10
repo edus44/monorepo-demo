@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: edus44/alpine-git-curl-bash-jq
     working_directory: ~/repo
-    parallelism: 2
+    parallelism: 10
     steps:
       - run: 
           name: hi
@@ -16,4 +16,4 @@ workflows:
   version: 2
   launcher:
     jobs:
-      - test
+      - te
